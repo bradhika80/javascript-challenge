@@ -3,8 +3,10 @@ var tableData = data;
 
 // YOUR CODE HERE!
 
-// get the button handler
+// initial table set up with default date
+BuildTable("1/1/2010")
 
+// get the button handler and create the handler function for the click event
 d3.select("#filter-btn").on("click", function() {
 
   // Prevent the page from refreshing
@@ -13,38 +15,25 @@ d3.select("#filter-btn").on("click", function() {
   // Select the input element and get the value
   var inputValue = d3.select("#datetime").node().value;
 
-  console.log(inputValue)
+  //console.log(inputValue)
 
-  validationMsg = ValidateDate(inputValue);
+  // validate the input date string and get the validationResult
+  validationResult = ValidateDate(inputValue);
 
-  // if date validation is not successful then print the error message and exit the event handler
-  if (validationMsg != "success")
+  // if date validationResult is not success then print the error message and exit the event handler
+  if (validationResult != "success")
   {
-     d3.select("#DateInvalid").text(validationMsg)
+     d3.select("#DateInvalid").text(validationResult)
      return;
   }
   else
   {
+    // reset the date invalid message html element
     d3.select("#DateInvalid").text("")
   }
 
-  // the date format in data may be different from the date entered by user. 
-  //so making the input date and the ufosightings date in same format
-  inputDate = new Date(inputValue)
-
-  // filter the data based on the input
-  ufoSightings = tableData.filter(function(ufo) {
-       return new Date(ufo.datetime).toString("mm/dd/yyyy") === inputDate.toString("mm/dd/yyyy")       
-    
-    });
-
-  console.log(ufoSightings)
-
-
-  BuildTable(ufoSightings)
-
-
-
+  // call the build table function
+  BuildTable(inputValue)
 })
 
 
@@ -76,14 +65,36 @@ function ValidateDate(dateStr)
 
 }
 
-function BuildTable (ufoSightings)
+function BuildTable (inputValue)
 {
-   
 
+  // the date format in data may be different from the date entered by user. 
+  //so making the input date and the ufosightings date in same format
+  inputDate = new Date(inputValue)
+
+  // filter the data based on the input
+  ufoSightings = tableData.filter(function(ufo) {
+    return new Date(ufo.datetime).toString("mm/dd/yyyy") === inputDate.toString("mm/dd/yyyy")       
+ 
+ });
+
+ // build the table - get the table object and body
   var table = d3.select("#ufo-table");
   var tbody = table.select("tbody");
+
+  //remove if any existing rows in the table
   tbody.selectAll("tr").remove()
+
+  // create a table row variable
   var trow;
+
+  if (ufoSightings.length == 0)
+  {
+    trow = tbody.append("tr");
+    trow.append("td").text(`No Ufo sightings recorded for the date: ${inputValue}`);
+    return;
+  }
+  // iterate through the dataset and add the data to the table
   ufoSightings.forEach(function(ufo) {
     trow = tbody.append("tr");
     trow.append("td").text(ufo.datetime);
