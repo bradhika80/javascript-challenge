@@ -123,8 +123,8 @@ function ValidateDate(dateStr)
 
 }
 
-// A function to filter the ufo sightings based on input date value and print them in the table
-function BuildTable (inputValue)
+// A function to filter the ufo sightings based on input parameters and print them in the table
+function BuildTable (inputValue, cityName, stateName,countryName, shapeName )
 {
 
   // the date format in data may be different from the date entered by user. 
