@@ -131,10 +131,18 @@ function BuildTable (inputValue, cityName, stateName,countryName, shapeName )
   //so making the input date and the ufosightings date in same format
   inputDate = new Date(inputValue)
 
-  // filter the data based on the input
+  // filter the data based on the input. 
+  // filters the data based on the date.
+  //if cityName is given it filters the data based on city, else it does not filter
+  //if stateName is given it filters the data based on state, else it does not filter 
+  //if countryName is given it filters the data based on country, else it does not filter 
+  //if shapeName is given it filters the data based on shape, else it does not filter 
   ufoSightings = tableData.filter(function(ufo) {
-      if ((new Date(ufo.datetime).toString("mm/dd/yyyy") === inputDate.toString("mm/dd/yyyy") )
-         && (cityName === "all" || cityName === ufo.city))
+      if ((new Date(ufo.datetime).toString("mm/dd/yyyy") === inputDate.toString("mm/dd/yyyy") )  
+           && (cityName === "all" || cityName === ufo.city)
+           && (stateName === "all" || stateName === ufo.state)
+           && (countryName === "all" || countryName === ufo.country)
+           && (shapeName === "all" || shapeName === ufo.shape))
          {
             return true;
 
