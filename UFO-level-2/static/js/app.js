@@ -37,6 +37,9 @@ d3.select("#filter-btn").on("click", function() {
   var cityName = citySelection.property("value");
 
   if (cityName.trim() == '')
+  {
+      cityName = "All"
+  }
 
   console.log(cityName)
 
@@ -145,7 +148,10 @@ function PopulateCityOption(){
 
     // use map function to get the cities. Use keys() to get the unique values. Sort them in ascending order
     var cityList = (d3.map(data, function(d){return(d.city)}).keys()).sort(d3.ascending);
-    //console.log(cityList)
+    
+    // Add a default value
+    //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    cityList.splice(0, 0, 'All');
 
     //populate the options
     var options = d3.select("#selCity")
@@ -162,8 +168,10 @@ function PopulateStateOption(){
 
     // use map function to get the states. Use keys() to get the unique values. Sort them in ascending order
     var stateList = (d3.map(data, function(d){return(d.state)}).keys()).sort(d3.ascending);
-    //cityList.insert(0, "All");
-    //console.log(cityList)
+    
+    // Add a default value
+    //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    stateList.splice(0, 0, 'All');
 
     //populate the options
     var options = d3.select("#selState")
@@ -180,8 +188,10 @@ function PopulateCountryOption(){
 
     // use map function to get the country. Use keys() to get the unique values. Sort them in ascending order
     var countryList = (d3.map(data, function(d){return(d.country)}).keys()).sort(d3.ascending);
-    //cityList.insert(0, "All");
-    //console.log(cityList)
+     
+    // Add a default value
+    //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    countryList.splice(0, 0, 'All');
 
     //populate the options
     var options = d3.select("#selCountry")
@@ -199,8 +209,10 @@ function PopulateShapeOption(){
 
     // use map function to get the shape. Use keys() to get the unique values. Sort them in ascending order
     var shapeList = (d3.map(data, function(d){return(d.shape)}).keys()).sort(d3.ascending);
-    //cityList.insert(0, "All");
-    //console.log(cityList)
+   
+    // Add a default value
+    //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    shapeList.splice(0, 0, 'All');
 
     //populate the options
     var options = d3.select("#selShape")
