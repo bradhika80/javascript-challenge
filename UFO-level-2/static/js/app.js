@@ -3,8 +3,8 @@ var tableData = data;
 
 // YOUR CODE HERE!
 
+PopulateAllOptions();
 
-PopulateCityOption();
 // initial table set up with default date
 BuildTable("1/11/2011");
 
@@ -35,6 +35,8 @@ d3.select("#filter-btn").on("click", function() {
   var citySelection = d3.select("#selCity");
   // Assign the value of the dropdown menu option to a variable
   var cityName = citySelection.property("value");
+
+  if (cityName.trim() == '')
 
   console.log(cityName)
 
@@ -129,19 +131,43 @@ function BuildTable (inputValue)
     
 }
 
+//function to populate all options
+function PopulateAllOptions()
+{
+    PopulateCityOption();
+    PopulateStateOption();
+}
+
 //function to prepopulate city list
 function PopulateCityOption(){
 
     // use map function to get the cities. Use keys() to get the unique values. Sort them in ascending order
     var cityList = (d3.map(data, function(d){return(d.city)}).keys()).sort(d3.ascending)
-    
+    //cityList.insert(0, "All");
     //console.log(cityList)
 
     //populate the options
-
     var options = d3.select("#selCity")
                     .selectAll('option')
                     .data(cityList).enter()
+                    .append('option')
+                    .text(function (d) { return d; });
+    
+
+}
+
+//function to prepopulate state list
+function PopulateStateOption(){
+
+    // use map function to get the states. Use keys() to get the unique values. Sort them in ascending order
+    var stateList = (d3.map(data, function(d){return(d.state)}).keys()).sort(d3.ascending)
+    //cityList.insert(0, "All");
+    //console.log(cityList)
+
+    //populate the options
+    var options = d3.select("#selState")
+                    .selectAll('option')
+                    .data(stateList).enter()
                     .append('option')
                     .text(function (d) { return d; });
     
