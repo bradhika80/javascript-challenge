@@ -142,8 +142,7 @@ function PopulateAllOptions()
 function PopulateCityOption(){
 
     // use map function to get the cities. Use keys() to get the unique values. Sort them in ascending order
-    var cityList = (d3.map(data, function(d){return(d.city)}).keys()).sort(d3.ascending)
-    //cityList.insert(0, "All");
+    var cityList = (d3.map(data, function(d){return(d.city)}).keys()).sort(d3.ascending).values();
     //console.log(cityList)
 
     //populate the options
@@ -160,7 +159,7 @@ function PopulateCityOption(){
 function PopulateStateOption(){
 
     // use map function to get the states. Use keys() to get the unique values. Sort them in ascending order
-    var stateList = (d3.map(data, function(d){return(d.state)}).keys()).sort(d3.ascending)
+    var stateList = (d3.map(data, function(d){return(d.state)}).keys()).sort(d3.ascending);
     //cityList.insert(0, "All");
     //console.log(cityList)
 
@@ -173,3 +172,22 @@ function PopulateStateOption(){
     
 
 }
+
+//function to prepopulate country list
+function PopulateCountryOption(){
+
+    // use map function to get the country. Use keys() to get the unique values. Sort them in ascending order
+    var countryList = (d3.map(data, function(d){return(d.country)}).keys()).sort(d3.ascending);
+    //cityList.insert(0, "All");
+    //console.log(cityList)
+
+    //populate the options
+    var options = d3.select("#selState")
+                    .selectAll('option')
+                    .data(countryList).enter()
+                    .append('option')
+                    .text(function (d) { return d; });
+    
+
+}
+
