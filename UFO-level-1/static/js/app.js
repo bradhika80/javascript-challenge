@@ -29,9 +29,17 @@ d3.select("#filter-btn").on("click", function() {
     d3.select("#DateInvalid").text("")
   }
 
+  // the date format in data may be different from the date entered by user. 
+  //so making the input date and the ufosightings date in same format
+  inputDate = new Date(inputValue)
+
   // filter the data based on the input
+  ufoSightings = tableData.filter(function(ufo) {
+       return new Date(ufo.datetime).toString("mm/dd/yyyy") === inputDate.toString("mm/dd/yyyy")       
+    
+    });
 
-
+  console.log(ufoSightings)
 
 
 })
@@ -48,13 +56,18 @@ function ValidateDate(dateStr)
 
     // regex expression for the date format
     //dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/(19|20)\d{2}/
-    dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/\d{4}/
+    //dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/\d{4}/
+
+    dateFormat = /^([0]?[1-9]|[1][0-2])\/([0]?[1-9]|[1|2][0-9]|[3][0|1])\/([0-9]{4})$/
 
     // if the input does not match the date format, it returns false
     if (!dateStr.trim().match(dateFormat))
     {    
         return "date format invalid!!" ;
     }
+
+    // check if the date is valid
+    
 
     return "success";
 
