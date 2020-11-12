@@ -6,7 +6,7 @@ var tableData = data;
 PopulateAllOptions();
 
 // initial table set up with default date
-BuildTable("1/11/2011");
+BuildTable("1/11/2011", "all", "all", "all", "all");
 
 // get the button handler and create the handler function for the click event
 d3.select("#filter-btn").on("click", function() {
@@ -39,7 +39,7 @@ d3.select("#filter-btn").on("click", function() {
   // if no input is recieved, default behavior is used
   if (cityName.trim() == '')
   {
-    cityName = "All"
+    cityName = "all"
   }
 
   // get the state from selection list
@@ -49,7 +49,7 @@ d3.select("#filter-btn").on("click", function() {
   // if no input is recieved, default behavior is used
   if (stateName.trim() == '')
   {
-    stateName = "All"
+    stateName = "all"
   }
 
   // get the country from selection list
@@ -59,7 +59,7 @@ d3.select("#filter-btn").on("click", function() {
   // if no input is recieved, default behavior is used
   if (countryName.trim() == '')
   {
-    countryName = "All"
+    countryName = "all"
   }
 
 
@@ -70,11 +70,11 @@ d3.select("#filter-btn").on("click", function() {
   // if no input is recieved, default behavior is used
   if (shapeName.trim() == '')
   {
-    shapeName = "All"
+    shapeName = "all"
   }
   
   // call the build table function
-  BuildTable(inputValue)
+  BuildTable(inputValue, cityName, stateName, countryName, shapeName)
 })
 
 // a function to reset the page elements without refreshing the page
@@ -181,7 +181,7 @@ function PopulateCityOption(){
     
     // Add a default value
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-    cityList.splice(0, 0, 'All');
+    cityList.splice(0, 0, 'all');
 
     //populate the options
     var options = d3.select("#selCity")
@@ -201,7 +201,7 @@ function PopulateStateOption(){
     
     // Add a default value
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-    stateList.splice(0, 0, 'All');
+    stateList.splice(0, 0, 'all');
 
     //populate the options
     var options = d3.select("#selState")
@@ -221,7 +221,7 @@ function PopulateCountryOption(){
      
     // Add a default value
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-    countryList.splice(0, 0, 'All');
+    countryList.splice(0, 0, 'all');
 
     //populate the options
     var options = d3.select("#selCountry")
@@ -242,7 +242,7 @@ function PopulateShapeOption(){
    
     // Add a default value
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-    shapeList.splice(0, 0, 'All');
+    shapeList.splice(0, 0, 'all');
 
     //populate the options
     var options = d3.select("#selShape")
