@@ -142,7 +142,7 @@ function PopulateAllOptions()
 function PopulateCityOption(){
 
     // use map function to get the cities. Use keys() to get the unique values. Sort them in ascending order
-    var cityList = (d3.map(data, function(d){return(d.city)}).keys()).sort(d3.ascending).values();
+    var cityList = (d3.map(data, function(d){return(d.city)}).keys()).sort(d3.ascending);
     //console.log(cityList)
 
     //populate the options
@@ -182,9 +182,28 @@ function PopulateCountryOption(){
     //console.log(cityList)
 
     //populate the options
-    var options = d3.select("#selState")
+    var options = d3.select("#selCountry")
                     .selectAll('option')
                     .data(countryList).enter()
+                    .append('option')
+                    .text(function (d) { return d; });
+    
+
+}
+
+
+//function to prepopulate shape list
+function PopulateShapeOption(){
+
+    // use map function to get the shape. Use keys() to get the unique values. Sort them in ascending order
+    var shapeList = (d3.map(data, function(d){return(d.shape)}).keys()).sort(d3.ascending);
+    //cityList.insert(0, "All");
+    //console.log(cityList)
+
+    //populate the options
+    var options = d3.select("#selShape")
+                    .selectAll('option')
+                    .data(shapeList).enter()
                     .append('option')
                     .text(function (d) { return d; });
     
