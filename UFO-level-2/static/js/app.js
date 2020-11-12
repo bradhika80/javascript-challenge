@@ -6,7 +6,7 @@ var tableData = data;
 PopulateAllOptions();
 
 // initial table set up with default date
-BuildTable("1/11/2011", "all", "all", "all", "all");
+BuildTable("1/1/2010", "all", "all", "all", "all");
 
 // get the button handler and create the handler function for the click event
 d3.select("#filter-btn").on("click", function() {
@@ -149,10 +149,8 @@ function BuildTable (inputValue, cityName, stateName,countryName, shapeName )
          }
          else
          {
-             return false;
-         }
-
-          
+            return false;
+         }         
  
  });
 
