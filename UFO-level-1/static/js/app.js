@@ -22,7 +22,6 @@ d3.select("#filter-btn").on("click", function() {
   {
      d3.select("#DateInvalid").text(validationMsg)
      return;
-
   }
   else
   {
@@ -40,6 +39,10 @@ d3.select("#filter-btn").on("click", function() {
     });
 
   console.log(ufoSightings)
+
+
+  BuildTable(ufoSightings)
+
 
 
 })
@@ -70,5 +73,28 @@ function ValidateDate(dateStr)
     
 
     return "success";
+
+}
+
+function BuildTable (ufoSightings)
+{
+   
+
+  var table = d3.select("#ufo-table");
+  var tbody = table.select("tbody");
+  tbody.selectAll("tr").remove()
+  var trow;
+  ufoSightings.forEach(function(ufo) {
+    trow = tbody.append("tr");
+    trow.append("td").text(ufo.datetime);
+    trow.append("td").text(ufo.city);
+    trow.append("td").text(ufo.state);
+    trow.append("td").text(ufo.country);
+    trow.append("td").text(ufo.shape);
+    trow.append("td").text(ufo.durationMinutes);
+    trow.append("td").text(ufo.comments);
+  });
+    
+
 
 }
