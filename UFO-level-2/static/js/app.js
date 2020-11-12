@@ -136,6 +136,8 @@ function PopulateAllOptions()
 {
     PopulateCityOption();
     PopulateStateOption();
+    PopulateCountryOption();
+    PopulateShapeOption();
 }
 
 //function to prepopulate city list
