@@ -31,6 +31,13 @@ d3.select("#filter-btn").on("click", function() {
      return;
   }
  
+  // get the city from selection list
+  var citySelection = d3.select("#selCity");
+  // Assign the value of the dropdown menu option to a variable
+  var cityName = citySelection.property("value");
+
+  console.log(cityName)
+
   // call the build table function
   BuildTable(inputValue)
 })
