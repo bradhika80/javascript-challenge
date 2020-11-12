@@ -165,7 +165,7 @@ function BuildTable (inputValue, cityName, stateName,countryName, shapeName )
 
   if (ufoSightings.length == 0)
   {
-    msg = `No Ufo sightings recorded for the date: ${inputValue}`
+    msg = `No Ufo sightings recorded for the Date: ${inputValue}, city: ${cityName}, state: ${stateName}, country: ${countryName}, shape: ${shapeName} `
     d3.select("#QueryResult").text(msg)
   }
 
