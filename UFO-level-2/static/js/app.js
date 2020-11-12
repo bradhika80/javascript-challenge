@@ -27,22 +27,52 @@ d3.select("#filter-btn").on("click", function() {
   // if date validationResult is not success then print the error message and exit the event handler
   if (validationResult != "success")
   {
-     d3.select("#DateInvalid").text(validationResult)
-     return;
+    d3.select("#DateInvalid").text(validationResult)
+    return;
   }
- 
+
+
   // get the city from selection list
   var citySelection = d3.select("#selCity");
   // Assign the value of the dropdown menu option to a variable
   var cityName = citySelection.property("value");
-
+  // if no input is recieved, default behavior is used
   if (cityName.trim() == '')
   {
-      cityName = "All"
+    cityName = "All"
   }
 
-  console.log(cityName)
+  // get the state from selection list
+  var stateSelection = d3.select("#selState");
+  // Assign the value of the dropdown menu option to a variable
+  var stateName = stateSelection.property("value");
+  // if no input is recieved, default behavior is used
+  if (stateName.trim() == '')
+  {
+    stateName = "All"
+  }
 
+  // get the country from selection list
+  var countrySelection = d3.select("#selCountry");
+  // Assign the value of the dropdown menu option to a variable
+  var countryName = countrySelection.property("value");
+  // if no input is recieved, default behavior is used
+  if (countryName.trim() == '')
+  {
+    countryName = "All"
+  }
+
+
+  // get the shape from selection list
+  var shapeSelection = d3.select("#selShape");
+  // Assign the value of the dropdown menu option to a variable
+  var shapeName = shapeSelection.property("value");
+  // if no input is recieved, default behavior is used
+  if (shapeName.trim() == '')
+  {
+    shapeName = "All"
+  }
+  
   // call the build table function
   BuildTable(inputValue)
 })
