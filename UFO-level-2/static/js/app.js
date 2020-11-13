@@ -3,6 +3,7 @@ var tableData = data;
 
 // YOUR CODE HERE!
 
+// populate options for the city, state, country, shape
 PopulateAllOptions();
 
 // initial table set up with default date
@@ -18,6 +19,8 @@ d3.select("#filter-btn").on("click", function() {
 
   // Select the input element and get the value
   var inputValue = d3.select("#datetime").node().value;
+
+
 
   //console.log(inputValue)
 
@@ -93,6 +96,8 @@ function ResetPageDefaults()
   //remove if any existing rows in the table
    tbody.selectAll("tr").remove()
 
+   d3.select("#datetime").node().placeholder = ''
+
 }
 
 
@@ -100,15 +105,19 @@ function ResetPageDefaults()
 function ValidateDate(dateStr)
 {
     // checks if the date input is empty
-    if (dateStr === null || dateStr.trim() === '')
+    if (dateStr === null || dateStr === '')
     {       
-        return "input value empty!!";  
+        return "input value is empty!!";  
+
     }
 
-    // regex expression for the date format
-    //dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/(19|20)\d{2}/
-    //dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/\d{4}/
-
+    
+    // checks if the date input is empty
+    if (dateStr.trim() === '')
+    {       
+        return "input value has spaces!!";  
+    }
+    
     // reference (regex) :- https://www.codegrepper.com/code-examples/delphi/how+to+validate+input+date+js
     dateFormat = /^([0]?[1-9]|[1][0-2])\/([0]?[1-9]|[1|2][0-9]|[3][0|1])\/([0-9]{4})$/
 
@@ -204,10 +213,11 @@ function PopulateCityOption(){
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     cityList.splice(0, 0, 'all');
 
-    //populate the options
+    //populate the options Reference :- http://bl.ocks.org/jfreels/6734823
     var options = d3.select("#selCity")
                     .selectAll('option')
-                    .data(cityList).enter()
+                    .data(cityList)
+                    .enter()
                     .append('option')
                     .text(function (d) { return d; });
     
@@ -224,10 +234,11 @@ function PopulateStateOption(){
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     stateList.splice(0, 0, 'all');
 
-    //populate the options
+    //populate the options Reference :- http://bl.ocks.org/jfreels/6734823
     var options = d3.select("#selState")
                     .selectAll('option')
-                    .data(stateList).enter()
+                    .data(stateList)
+                    .enter()
                     .append('option')
                     .text(function (d) { return d; });
     
@@ -244,10 +255,11 @@ function PopulateCountryOption(){
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     countryList.splice(0, 0, 'all');
 
-    //populate the options
+    //populate the options Reference :- http://bl.ocks.org/jfreels/6734823
     var options = d3.select("#selCountry")
                     .selectAll('option')
-                    .data(countryList).enter()
+                    .data(countryList)
+                    .enter()
                     .append('option')
                     .text(function (d) { return d; });
     
@@ -265,10 +277,11 @@ function PopulateShapeOption(){
     //Ref :- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     shapeList.splice(0, 0, 'all');
 
-    //populate the options
+    //populate the options Reference :- http://bl.ocks.org/jfreels/6734823
     var options = d3.select("#selShape")
                     .selectAll('option')
-                    .data(shapeList).enter()
+                    .data(shapeList)
+                    .enter()
                     .append('option')
                     .text(function (d) { return d; });
     
