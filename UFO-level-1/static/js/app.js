@@ -49,6 +49,9 @@ function ResetPageDefaults()
   //remove if any existing rows in the table
    tbody.selectAll("tr").remove()
 
+   // remove the placeholder to avoid confusion after the initial load
+   d3.select("#datetime").node().placeholder = ''
+
 }
 
 
