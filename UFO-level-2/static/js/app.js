@@ -166,6 +166,10 @@ function BuildTable (inputValue, cityName, stateName,countryName, shapeName )
     msg = `No Ufo sightings recorded for the Date: ${inputValue}, city: ${cityName}, state: ${stateName}, country: ${countryName}, shape: ${shapeName} `
     d3.select("#QueryResult").text(msg)
   }
+  else
+  {
+    d3.select("#QueryResult").text("UFO Sightings")
+  }
 
   // iterate through the dataset and add the data to the table
   ufoSightings.forEach(function(ufo) {

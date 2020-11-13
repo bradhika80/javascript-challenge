@@ -61,10 +61,6 @@ function ValidateDate(dateStr)
         return "input value empty!!";  
     }
 
-    // regex expression for the date format
-    //dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/(19|20)\d{2}/
-    //dateFormat = /(0\d{1}|1[0-2])\/([0-2]\d{1}|3[0-1])\/\d{4}/
-
     // reference (regex) :- https://www.codegrepper.com/code-examples/delphi/how+to+validate+input+date+js
     dateFormat = /^([0]?[1-9]|[1][0-2])\/([0]?[1-9]|[1|2][0-9]|[3][0|1])\/([0-9]{4})$/
 
@@ -73,10 +69,8 @@ function ValidateDate(dateStr)
     {    
         return "date format invalid!!" ;
     }
-
    
     return "success";
-
 }
 
 // A function to filter the ufo sightings based on input date value and print them in the table
@@ -100,10 +94,15 @@ function BuildTable (inputValue)
   // create a table row variable
   var trow;
 
+  // if no ufo sightings then put the message not available
   if (ufoSightings.length == 0)
   {
     msg = `No Ufo sightings recorded for the date: ${inputValue}`
     d3.select("#QueryResult").text(msg)
+  }
+  else
+  {
+    d3.select("#QueryResult").text("UFO Sightings")
   }
 
   // iterate through the dataset and add the data to the table
